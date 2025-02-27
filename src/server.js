@@ -43,7 +43,7 @@ export const setupServer = () => {
         const { contactId } = req.params;
         const contact = await getContactById(contactId);
 
-        // Відповідь, якщо контакт не знайдено
+        // Відповідь, якщо контакт не знайдено,
         if (!contact) {
             res.status(404).json({
                 status: 404,
