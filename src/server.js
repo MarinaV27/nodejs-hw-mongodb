@@ -3,6 +3,8 @@ import pino from 'pino-http';
 import cors from 'cors';
 import { getEnvVar } from './utils/getEnvVar.js';
 
+import contactRouter from './routers/contacts.js';
+
 
 
 const PORT = Number(getEnvVar('PORT', '3000'));
@@ -29,9 +31,7 @@ export const setupServer = () => {
         });
     });
 
-    
-
-   
+    app.use(contactRouter); // Додаємо роутер до app як middleware
 
     app.use('*', (req, res) => {
         res.status(404).json({
