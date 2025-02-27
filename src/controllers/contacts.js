@@ -1,17 +1,14 @@
 import { getAllContacts, getContactById } from "../services/contacts.js";
 
 
-export const getContactsController = async (req, res, next) => {
-    try {
-        const contacts = await getAllContacts();
+export const getContactsController = async (req, res) => {
+    const contacts = await getAllContacts();
+    
         res.status(200).json({
         status: 200,
         message: "Successfully created a contact!",
         data: contacts,
     });
-    } catch (error) {
-        next(error);
-    }
     
 };
 
