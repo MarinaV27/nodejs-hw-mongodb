@@ -16,14 +16,7 @@ export const getContactsController = async (req, res) => {
         const { contactId } = req.params;
         const contact = await getContactById(contactId);
 
-        // Відповідь, якщо контакт не знайдено
-        //if (!contact) {
-        //    res.status(404).json({
-        //        status: 404,
-        //        message: 'Contact not found',
-        //    });
-        //    return;
-        //}
+        
         if (!contact) {
             next(new Error('Contact not found'));
             return;
