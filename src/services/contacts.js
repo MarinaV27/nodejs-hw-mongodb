@@ -16,10 +16,12 @@ export const createContact = async (payload) => {
 };
 
 export const updateContact = async (contactId, payload) => {
-    const rawResult = ContactsCollection.findByIdAndUpdate(
-        contactId, payload, { new: true },
-    );
-    if (!rawResult) return null;
+  const rawResult = await ContactsCollection.findByIdAndUpdate(
+    contactId,
+    payload,
+    { new: true },
+  );
+  if (!rawResult) return null;
 
-    return rawResult;
+  return rawResult;
 };
