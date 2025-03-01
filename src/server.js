@@ -34,7 +34,7 @@ export const setupServer = () => {
     });
 
     
-    app.use("/api/contacts", contactRouter); // Додаємо роутер до app як middleware
+    app.use(contactRouter); // Додаємо роутер до app як middleware
 
     app.use('*', notFoundHandler);
 
