@@ -20,7 +20,9 @@ export const getAllContacts = async ({
         perPage, page});
 
     return {
-       contacts,
+        contacts,
+        page,
+        perPage,
         ...paginationData,
     };
 };
