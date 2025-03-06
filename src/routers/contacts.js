@@ -17,12 +17,12 @@ const jsonParser = express.json();
 
 router.get('/contacts', ctrlWrapper(getContactsController));
     
-router.get('/contacts/:contactId', isValidId, ctrlWrapper(getContactsByIdController));
+router.get('/contacts/:id', isValidId, ctrlWrapper(getContactsByIdController));
 
 router.post('/contacts', jsonParser, validateBody(createContactSchema), ctrlWrapper(createContactController));
 
-router.patch('/contacts/:contactId', jsonParser, validateBody(updateContactSchema), ctrlWrapper(patchContactController));
+router.patch('/contacts/:id', isValidId, jsonParser, validateBody(updateContactSchema), ctrlWrapper(patchContactController));
 
-router.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
+router.delete('/contacts/:id',isValidId, ctrlWrapper(deleteContactController));
 
 export default router;
