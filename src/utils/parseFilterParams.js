@@ -1,9 +1,9 @@
-const parseIsFavorite = (isFavorite) => {
+const parseIsFavourite = (isFavourite) => {
     const isString = typeof contactType === 'string';
     if (!isString) return;
     const isBool = typeof JSON.parse(isString) === 'boolean';
     if (!isBool) return;
-    return JSON.parse(isFavorite);
+    return JSON.parse(isFavourite);
 };
 
 const parseContactType = (contactType) => {
@@ -16,13 +16,13 @@ const parseContactType = (contactType) => {
 
 
 export const parseFilterParams = (query) => {
-    const { isFavorite, contactType } = query;
+    const { isFavourite, contactType } = query;
 
-    const parsedIsFavorite = parseIsFavorite(isFavorite);
+    const parsedIsFavourite = parseIsFavourite(isFavourite);
     const parsedContactType = parseContactType(contactType);
 
     return {
-        isFavorite: parsedIsFavorite,
+        isFavourite: parsedIsFavourite,
         contactType: parsedContactType,
     };
 };
