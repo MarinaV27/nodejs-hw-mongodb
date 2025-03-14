@@ -8,6 +8,7 @@ export const getAllContacts = async ({
     perPage = 10,
     sortOrder = SORT_ORDER.ASC,
     sortBy = '_id',
+    filter = { },
 
 }) => {
     const limit = perPage;
