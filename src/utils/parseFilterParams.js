@@ -1,9 +1,12 @@
-const parseIsFavorite = (isFavorite) => {
-    const isString = typeof contactType === 'string';
-    if (!isString) return;
-    const isBool = typeof JSON.parse(isString) === 'boolean';
-    if (!isBool) return;
-    return JSON.parse(isFavorite);
+const parseIsFavourite = (isFavourite) => {
+    if (typeof isFavourite === "boolean") return isFavourite; // Если уже boolean
+    if (typeof isFavourite !== "string") return undefined; // Пропускаем другие типы
+
+    const lowerCaseValue = isFavourite.toLowerCase(); // Приводим к нижнему регистру
+    if (lowerCaseValue === "true") return true;
+    if (lowerCaseValue === "false") return false;
+    
+    return undefined; // Если передано некорректное значение
 };
 
 const parseContactType = (contactType) => {
@@ -16,13 +19,13 @@ const parseContactType = (contactType) => {
 
 
 export const parseFilterParams = (query) => {
-    const { isFavorite, contactType } = query;
+    const { isFavourite, contactType } = query;
 
-    const parsedIsFavorite = parseIsFavorite(isFavorite);
+    const parsedIsFavourite = parseIsFavourite(isFavourite);
     const parsedContactType = parseContactType(contactType);
 
     return {
-        isFavorite: parsedIsFavorite,
+        isFavourite: parsedIsFavourite,
         contactType: parsedContactType,
     };
 };
