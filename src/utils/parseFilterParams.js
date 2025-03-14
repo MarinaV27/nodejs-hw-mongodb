@@ -1,9 +1,13 @@
 const parseIsFavourite = (isFavourite) => {
-    const isString = typeof contactType === 'string';
-    if (!isString) return;
-    const isBool = typeof JSON.parse(isString) === 'boolean';
-    if (!isBool) return;
-    return JSON.parse(isFavourite);
+    if (typeof isFavourite !=='string') return undefined;
+    try {
+        const parsed = JSON.parse(isFavourite);
+        if (typeof parsed === 'boolean') {
+            return parsed;
+        }
+    } catch  {
+        return undefined;
+    }
 };
 
 const parseContactType = (contactType) => {
