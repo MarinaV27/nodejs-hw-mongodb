@@ -33,7 +33,7 @@ export const parseSortParams = (query) => {
 
     return {
         sortOrder: parsedSortOrder,
-        sortBy: parsedSortBy,
+        sortBy: parsedSortBy
     };
 
 };
