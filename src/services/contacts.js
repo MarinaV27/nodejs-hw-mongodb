@@ -34,8 +34,8 @@ export const getAllContacts = async ({
         .merge(contactsQuery)
         .countDocuments(),
     ]);
-    const paginationData = calculatePaginationData({contactsCount,
-        perPage, page});
+    const paginationData = calculatePaginationData({page, perPage, contactsCount
+        });
 
     return {
         data: contacts,
