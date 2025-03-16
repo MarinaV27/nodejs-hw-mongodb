@@ -34,12 +34,16 @@ export const getAllContacts = async ({
         .merge(contactsQuery)
         .countDocuments(),
     ]);
-    const paginationData = calculatePaginationData({page, perPage, contactsCount
+    const paginationData = calculatePaginationData({page, perPage, contactsCount,
         });
 
     return {
-        data: contacts,
-        ...paginationData,
+        data,
+    page,
+    perPage,
+    totalItems: contactsCount,
+    ...paginationData,
+  };
     };
 };
 
