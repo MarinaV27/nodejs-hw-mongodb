@@ -34,14 +34,18 @@ export const getAllContacts = async ({
         .merge(contactsQuery)
         .countDocuments(),
     ]);
-    const paginationData = calculatePaginationData({contactsCount,
-        perPage, page});
+    const paginationData = calculatePaginationData({page, perPage, contactsCount,
+        });
 
     return {
-        data: contacts,
-        ...paginationData,
+        data:contacts ,
+    page,
+    perPage,
+    totalItems: contactsCount,
+    ...paginationData,
+  };
     };
-};
+
 
 export const getContactById = async (contactId) => {
     const contact = await ContactsCollection.findById(contactId);
