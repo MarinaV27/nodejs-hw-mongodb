@@ -38,14 +38,14 @@ export const getAllContacts = async ({
         });
 
     return {
-        data,
+        data:contacts ,
     page,
     perPage,
     totalItems: contactsCount,
     ...paginationData,
   };
     };
-};
+
 
 export const getContactById = async (contactId) => {
     const contact = await ContactsCollection.findById(contactId);
