@@ -23,7 +23,7 @@ export const getAllContacts = async ({
         contactsQuery.where('contactType').equals(filter.contactType);
     }
 
-    const [contacts, contactsCount] = await Promise.all([
+    const [contactsCount, contacts] = await Promise.all([
         ContactsCollection.find()
         .merge(contactsQuery)
         .countDocuments(),
