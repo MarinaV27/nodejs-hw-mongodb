@@ -4,7 +4,8 @@ import {
     getContactsByIdController,
     createContactController,
     patchContactController,
-    deleteContactController
+    deleteContactController,
+    upsertContactController,
 } from "../controllers/contacts.js"; 
 import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 import { validateBody } from "../middlewares/validateBody.js";
@@ -23,6 +24,8 @@ router.post('/contacts', jsonParser, validateBody(createContactSchema), ctrlWrap
 
 router.patch('/contacts/:id', isValidId, jsonParser, validateBody(updateContactSchema), ctrlWrapper(patchContactController));
 
-router.delete('/contacts/:id',isValidId, ctrlWrapper(deleteContactController));
+router.delete('/contacts/:id', isValidId, ctrlWrapper(deleteContactController));
+
+router.put('contacts/:id', isValidId, validateBody(createContactSchema), ctrlWrapper(upsertContactController));
 
 export default router;
