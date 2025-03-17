@@ -39,9 +39,6 @@ export const getAllContacts = async ({
 
     return {
     data: contacts,
-   // page,
-    //perPage,
-   // totalItems: contactsCount,
     ...paginationData,
   };
     };
