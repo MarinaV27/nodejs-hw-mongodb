@@ -34,14 +34,14 @@ export const getAllContacts = async ({
         .exec(),
         
     ]);
-    const paginationData = calculatePaginationData({page, perPage, contactsCount,
+    const paginationData = calculatePaginationData({contactsCount, perPage, page, 
         });
 
     return {
     data: contacts,
-    page,
-    perPage,
-    totalItems: contactsCount,
+   // page,
+    //perPage,
+   // totalItems: contactsCount,
     ...paginationData,
   };
     };
