@@ -33,16 +33,15 @@ export const getAllContacts = async ({
         .sort({ [sortBy]: sortOrder })
         .exec(),
         
-       
     ]);
     const paginationData = calculatePaginationData({page, perPage, contactsCount,
         });
 
     return {
-        data:contacts ,
+    data:contacts ,
     page,
     perPage,
-    totalItems: count,
+    totalItems: contactsCount,
     ...paginationData,
   };
     };
