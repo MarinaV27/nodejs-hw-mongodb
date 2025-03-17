@@ -1,7 +1,7 @@
 
 export const calculatePaginationData = ({count, perPage, page}) => {
     const totalPages = Math.ceil(count / perPage);
-    const hasNexPage = Boolean(page < totalPages);
+    const hasNextPage = Boolean(page < totalPages);
     const hasPreviousPage = page !== 1;
 
     return {
@@ -10,7 +10,7 @@ export const calculatePaginationData = ({count, perPage, page}) => {
         totalItems: count,
         totalPages,
         hasPreviousPage,
-        hasNexPage,
+        hasNextPage,
 
     };
 };
