@@ -6,7 +6,6 @@ import {
     createContactController,
     patchContactController,
     deleteContactController,
-    upsertContactController,
 } from "../controllers/contacts.js"; 
 import { ctrlWrapper } from "../utils/ctrlWrapper.js";
 import { validateBody } from "../middlewares/validateBody.js";
@@ -27,6 +26,5 @@ router.patch('/contacts/:id', isValidId, jsonParser, validateBody(updateContactS
 
 router.delete('/contacts/:id', isValidId, ctrlWrapper(deleteContactController));
 
-router.put('contacts/:id', isValidId, validateBody(createContactSchema), ctrlWrapper(upsertContactController));
 
 export default router;
