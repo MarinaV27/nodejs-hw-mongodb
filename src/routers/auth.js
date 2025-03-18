@@ -8,7 +8,7 @@ import { validateBody } from '../middlewares/validateBody.js';
 
 const router = Router();
 
-router.posr(
+router.post(
     '/register',
     validateBody(reqisterUserSchema),
     ctrlWraper(registerUserController),
