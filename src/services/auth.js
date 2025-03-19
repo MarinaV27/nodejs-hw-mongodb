@@ -32,11 +32,13 @@ export const loginUser = async (payload) => {
         throw createHttpError(401, 'Unauthorized');
     }
 
+    await SessionsCollection.deleteOne({userId: user._id});
+
     const accessToken = crypto.randomBytes(30).toString('base64');
     const refreshToken = crypto.randomBytes(30).toString('base64');
 
     return await SessionsCollection.create({
-        iserId: user._id,
+        userId: user._id,
         accessToken,
         refreshToken,
         accessTokenValidUntil: new Date(Date.now() + ACCESS_TOKEN_TTL),
@@ -44,3 +46,4 @@ export const loginUser = async (payload) => {
     });
 
 };
+
