@@ -8,6 +8,7 @@ import { ACCESS_TOKEN_TTL, REFRESH_TOKEN_TTL } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
 
 
+
 export const registerUser = async (payload) => {
     const user = await UsersCollection.findOne({ email: payload.email });
     if (user) throw createHttpError(409, 'Email is use');
@@ -45,5 +46,9 @@ export const loginUser = async (payload) => {
         refreshTokenValidUntil: new Date(Date.now() + REFRESH_TOKEN_TTL),
     });
 
+};
+
+export const logoutUser = async (sessionId) => {
+  await SessionsCollection.deleteOne({ _id: sessionId });
 };
 
