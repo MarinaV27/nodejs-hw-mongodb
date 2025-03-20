@@ -17,7 +17,7 @@ export const setupServer = () => {
     const app = express();
 
 
-    //app.use(express.json());
+    app.use(express.json());
     app.use(cors());
 
     app.use(cookieParser());
