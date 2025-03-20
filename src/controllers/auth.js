@@ -39,7 +39,7 @@ export const loginUserController = async (req, res) => {
 
 export const logoutUserController = async (req, res) => {
     if (req.cookies.sessionId) {
-        logoutUser(req.cookies.sessionId);
+        await logoutUser(req.cookies.sessionId);
     }
 
     res.clearCookie('sessionId');
@@ -71,7 +71,7 @@ setupSession(res, session);
 res.json({
     status: 200,
     message: 'Successfully refreshed a session!',
-    date: {
+    data: {
         accessToken: session.accessToken,
     },
 });
