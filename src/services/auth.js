@@ -11,7 +11,10 @@ import { SessionsCollection } from '../db/models/session.js';
 
 export const registerUser = async (payload) => {
     const user = await UsersCollection.findOne({ email: payload.email });
-    if (user) throw createHttpError(409, 'Email is use');
+    if (user) {
+        throw createHttpError(409, 'Email is use'); 
+        
+    }
 
     const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
