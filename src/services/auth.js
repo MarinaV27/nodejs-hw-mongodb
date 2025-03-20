@@ -26,13 +26,13 @@ export const registerUser = async (payload) => {
 
 export const loginUser = async (payload) => {
     const user = await UsersCollection.findOne({ email: payload.email });
-    if (user === null) {
+    if (!user) {
         throw createHttpError(404, 'User not found');
     }
     const isEqual = await bcrypt.compare(payload.password,
         user.password); // Порівнюємо хеші паролів
     
-    if (isEqual === false) {
+    if (!isEqual) {
         throw createHttpError(401, 'Unauthorized');
     }
 
