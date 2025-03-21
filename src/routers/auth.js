@@ -19,9 +19,10 @@ router.post('/register',
 );
 
 router.post('/login',
-    validateBody(loginUserSchema),
+    validateBody(loginUserSchema), 
     ctrlWrapper(loginUserController),
 );
+
 
 router.post('/logout',
     ctrlWrapper(logoutUserController),
