@@ -2,10 +2,15 @@ import crypto, { randomBytes } from "node:crypto";
 
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
+import jwt from 'jsonwebtoken';
 
 import { UsersCollection } from "../db/models/user.js";
 import { ACCESS_TOKEN_TTL, REFRESH_TOKEN_TTL } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
+import { SMTP } from "../constants/index.js";
+import { getEnvVar } from "../utils/getEnvVar.js";
+import { sendEmail } from "../utils/sendMail.js";
+
 
 
 
@@ -101,4 +106,22 @@ export const requestResetToken = async (email) => {
     if (!user) {
         throw createHttpError(404, 'User not found');
     }
+    const resetToken = jwt.sign(
+        {
+            sub: user._id,
+            email,
+        },
+        getEnvVar('JWT_SECRET'),
+        {
+            expiresIn: '5m',
+        },
+    );
+
+    await sendEmail({
+        from: getEnvVar(SMTP.SMTP_FROM),
+        to: email,
+        subject: 'Reset your password',
+        html: `<p>Click <a href="${resetToken}">here</a> to reset your 
+        password!</p>`,
+    });
 };
