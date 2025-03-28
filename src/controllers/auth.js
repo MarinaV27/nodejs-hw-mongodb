@@ -1,5 +1,5 @@
 
-import { registerUser } from "../services/auth.js"; 
+import { registerUser, resetPassword } from "../services/auth.js"; 
 import { loginUser } from "../services/auth.js";
 import { REFRESH_TOKEN_TTL } from "../constants/index.js";
 import { logoutUser } from "../services/auth.js";
@@ -84,5 +84,15 @@ export const requestResetEmailController = async (req, res) => {
         message: 'Reset password email was successfully sent!',
         status: 200,
         data: {},
+    });
+};
+
+export const resetPasswordController = async (req, res) => {
+    await resetPassword(req.body);
+    res.json({
+        status: 200,
+        message: 'Password has been successfully reset.',
+        data: {},
+        
     });
 };
