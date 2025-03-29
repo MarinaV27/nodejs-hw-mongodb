@@ -9,6 +9,7 @@ import {
 import { parsePaginationParams } from "../utils/parsePaginationParams.js";
 import { parseSortParams } from "../utils/parseSortParams.js";
 import { parseFilterParams } from "../utils/parseFilterParams.js";
+import { saveFileToUploadDir } from "../utils/saveFileToUploadDir.js";
 
 
 export const getContactsController = async (req, res) => {
@@ -68,7 +69,30 @@ export const createContactController = async (req, res) => {
 
 export const patchContactController = async (req, res, next) => {
     const { id } = req.params;
-     const photo = req.file;
+    const photo = req.file;
+
+    let photoUrl;
+
+    if (photo) {
+        photoUrl = await saveFileToUploadDir(photo);
+    }
+
+    const result = await updateContact(id, {
+        ...req.body,
+        photo: photoUrl,
+    });
+
+    if (!result) {
+        next(createHttpError(404, `Contact not found ${id}`));
+        return;
+    }
+
+     res.json({
+    status: 200,
+    message: `Successfully patched a student!`,
+    data: result.student,
+  });
+
     const patchContact = await updateContact(id, req.body, req.user._id);
 
     if (!patchContact) {
