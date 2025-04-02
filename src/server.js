@@ -38,16 +38,17 @@ export const setupServer = () => {
     });
 
     
-    app.use(router); // Додаємо роутер до app як middleware
+    app.use( router);// Додаємо роутер до app як middleware
+
+     app.use('/uploads', express.static(UPLOAD_DIR));
+
 
     app.use('*', notFoundHandler);
 
     app.use(errorHandler);
    
-
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
-
-    app.use('/uploads', express.static(UPLOAD_DIR));
+   
 };
