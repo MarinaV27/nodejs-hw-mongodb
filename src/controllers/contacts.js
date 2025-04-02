@@ -83,6 +83,7 @@ export const createContactController = async (req, res) => {
 };
 
 export const patchContactController = async (req, res) => {
+    
   const { contactId } = req.params;
   const { _id: userId } = req.user;
   const photo = req.file;
