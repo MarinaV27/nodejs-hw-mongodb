@@ -38,7 +38,7 @@ export const setupServer = () => {
     });
 
     
-    app.use( router);// Додаємо роутер до app як middleware
+    app.use(router);// Додаємо роутер до app як middleware
 
      app.use('/uploads', express.static(UPLOAD_DIR));
 
