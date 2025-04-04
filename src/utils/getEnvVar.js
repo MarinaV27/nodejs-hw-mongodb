@@ -8,4 +8,4 @@ export const getEnvVar = (name, defaultValue) => {
     if (defaultValue) return defaultValue;
     throw new Error(`Missing: process.env['${name}'].`);
 };
-console.log("SMTP_HOST:", process.env.SMTP_HOST);
+
