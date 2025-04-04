@@ -127,6 +127,7 @@ export const requestResetToken = async (email) => {
   );
 
   try {
+    console.log("Loading email template from:", resetPasswordTemplatePath);
     const templateSource = (
       await fs.readFile(resetPasswordTemplatePath)
     ).toString();
@@ -143,7 +144,9 @@ export const requestResetToken = async (email) => {
       subject: 'Reset your password',
       html,
     });
-  } catch (err) {
+  } catch (err)
+  {console.error('SEND EMAIL ERROR:', err);
+
     throw createHttpError(
       500, 'Failed to send the email, please try again later.',
     );

@@ -1,8 +1,11 @@
-import  {ContactsCollection}  from '../db/models/contacts.js';
+import createHttpError from 'http-errors';
+import mongoose from 'mongoose';
+
+import { ContactsCollection } from '../db/models/contacts.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../constants/index.js';
 
-
+const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 export const getAllContacts = async ({
     page = 1,
     perPage = 10,
@@ -56,17 +59,17 @@ export const createContact = async (payload) => {
 };
 
 export const updateContact = async (contactId, payload, userId) => {
-  const rawResult = await ContactsCollection.findOneAndUpdate(
+  if (!isValidObjectId(contactId)) {
+    throw createHttpError(400, 'Invalid contact ID');
+  }
+
+  const updatedContact = await ContactsCollection.findOneAndUpdate(
     { _id: contactId, userId },
     payload,
-    { new: true,  includeResultMetadata: true,
-     },
+    { new: true, includeResultMetadata: true },
   );
- // if (!rawResult) return null;
 
-    return rawResult.value;
-    
-  
+  return updatedContact?.value ?? null;
 };
 
 export const deleteContact = async (contactId, userId) => {
