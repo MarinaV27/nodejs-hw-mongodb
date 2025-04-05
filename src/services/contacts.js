@@ -61,11 +61,15 @@ export const createContact = async (payload) => {
 export const updateContact = async (contactId, payload, userId) => {
   if (!isValidObjectId(contactId)) {
     throw createHttpError(400, 'Invalid contact ID');
-  }
+    }
+    
+if (Object.keys(payload).length === 0) {
+      throw createHttpError(400, 'No fields to update' );
+    }
 
   const updatedContact = await ContactsCollection.findOneAndUpdate(
     { _id: contactId, userId },
-    payload,
+    { $set: payload },
     { new: true, includeResultMetadata: true },
   );
 

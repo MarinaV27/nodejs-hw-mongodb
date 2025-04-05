@@ -3,12 +3,12 @@ import nodemailer from 'nodemailer';
 import { SMTP } from '../constants/index.js';
 import { getEnvVar } from '../utils/getEnvVar.js';
 
-console.log('SMTP config:', {
-  host: getEnvVar(SMTP.SMTP_HOST),
-  port: getEnvVar(SMTP.SMTP_PORT),
-  user: getEnvVar(SMTP.SMTP_USER),
-  pass: getEnvVar(SMTP.SMTP_PASSWORD),
-});
+//console.log('SMTP config:', {
+//  host: getEnvVar(SMTP.SMTP_HOST),
+//  port: getEnvVar(SMTP.SMTP_PORT),
+//  user: getEnvVar(SMTP.SMTP_USER),
+//  pass: getEnvVar(SMTP.SMTP_PASSWORD),
+//});
 
 
 const transporter = nodemailer.createTransport({
