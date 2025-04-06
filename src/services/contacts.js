@@ -48,8 +48,8 @@ export const getAllContacts = async ({
     };
 
 
-export const getContactById = async (contactId, userId) => {
-    const contact = await ContactsCollection.findOne({ _id: contactId, userId });
+export const getContactById = async ({ _id, userId }) => {
+    const contact = await ContactsCollection.findOne({ _id, userId });
     return contact;
 };
 
