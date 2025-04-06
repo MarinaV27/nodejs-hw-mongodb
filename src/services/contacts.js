@@ -76,9 +76,9 @@ if (Object.keys(payload).length === 0) {
   return updatedContact?.value ?? null;
 };
 
-export const deleteContact = async ({ _id, userId }) => {
+export const deleteContact = async (contactId, userId) => {
     const contact = await ContactsCollection.findOneAndDelete({
-        _id, userId
+        _id: contactId, userId
     });
     return contact;
 };
