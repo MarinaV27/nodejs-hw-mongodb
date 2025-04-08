@@ -11,7 +11,7 @@ parameters:
     required: true
     schema:
       type: string
-      example: '67cece57cf044b5afacf7749'
+      example: '67f5410110fdc9787176d944'
 responses:
   '204':
     description: No Content

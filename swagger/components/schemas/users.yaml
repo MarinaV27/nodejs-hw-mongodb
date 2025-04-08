@@ -11,7 +11,7 @@ properties:
   email:
     description: "User's email"
     type: string
-    example: 'Jason.statham@example.com'
+    example: 'jason.statham@example.com'
   password:
     description: "User's password"
     type: string

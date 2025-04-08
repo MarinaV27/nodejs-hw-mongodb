@@ -11,7 +11,7 @@ parameters:
     required: true
     schema:
       type: string
-      example: '67cece57cf044b5afacf7749'
+      example: '67f5410110fdc9787176d944'
 requestBody:
   content:
     multipart/form-data:
@@ -21,15 +21,15 @@ requestBody:
           name:
             description: 'Contact`s name'
             type: string
-            example: 'John Doe'
+            example: 'Jason Statham'
           phoneNumber:
             description: 'Contact`s phone number'
             type: string
-            example: '+380000000004'
+            example: '+380000000007'
           email:
             description: 'Contact`s email'
             type: string
-            example: 'example@mail.com'
+            example: 'jason.statham@example.com'
           isFavourite:
             description: 'Whether the contact is marked as a favorite'
             type: boolean
@@ -42,7 +42,7 @@ requestBody:
             description: 'Link to contact`s photo'
             format: binary
             type: string
-            example: 'https://res.cloudinary.com/dsajigq8r/image/upload/v1742059466/obsbt5gvzved2tvcl1ma.png'
+            example: 'https://res.cloudinary.com/dlpaesbli/image/upload/v1744126793/jym0kwfu9soxsaytd20s.jpg'
 responses:
   '200':
     description: 'Update a contact'
